@@ -17,10 +17,8 @@ arraynumero = []
 
 # Itera sobre os caracteres da expressão
 novoCalculo.each_with_index do |char, index|
-    if ["+", "-", "*", "/"].include?(char)
+    if ["+", "-", "*", "/"].include?(char) 
       # Converte as partes da expressão para inteiros
-
-      
       for i in novoCalculo
         x = novoCalculo[0...index].join.to_i
         # Armazena o último número, se houver
@@ -53,5 +51,5 @@ novoCalculo.each_with_index do |char, index|
   end
 # Imprime o resultado, se houver um
 if result
-    puts "Resultado: #{x}  = #{result}"
+    puts "Resultado: #{calculo} = #{result}"
 end
