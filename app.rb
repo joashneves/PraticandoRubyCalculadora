@@ -12,17 +12,27 @@ x2 = nil
 # Inicializa o resultado
 result = nil
 
+# Inicializa variáveis para armazenar os números e o operador
+arraynumero = []
+
 # Itera sobre os caracteres da expressão
 novoCalculo.each_with_index do |char, index|
     if ["+", "-", "*", "/"].include?(char)
       # Converte as partes da expressão para inteiros
-      x = novoCalculo[0...index].join.to_i
-      x2 = novoCalculo[(index+1)..-1].join.to_i
-  
+
+      
+      for i in novoCalculo
+        x = novoCalculo[0...index].join.to_i
+        # Armazena o último número, se houver
+        arraynumero << i.to_i unless i.empty?
+
+        puts "o numeor é: #{i} = #{x} e o x[#{i}] é #{arraynumero}"
+      end
+      
       case char
       when "+"
         puts 'Operação: soma'
-        result = x + x2
+        result = arraynumero[0] + arraynumero[4]
       when "-"
         puts 'Operação: subtração'
         result = x - x2
@@ -34,7 +44,7 @@ novoCalculo.each_with_index do |char, index|
           puts 'Não é possível dividir por 0'
         else
           puts 'Operação: divisão'
-          result = x / x2
+          result = x / x[1]
         end
       else
         puts 'Operação inválida'
@@ -43,5 +53,5 @@ novoCalculo.each_with_index do |char, index|
   end
 # Imprime o resultado, se houver um
 if result
-    puts "Resultado: #{x} #{calculo} #{x2} = #{result}"
+    puts "Resultado: #{x}  = #{result}"
 end
