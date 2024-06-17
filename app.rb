@@ -22,27 +22,29 @@ novoCalculo.each_with_index do |char, index|
       for i in novoCalculo
         x = novoCalculo[0...index].join.to_i
         # Armazena o último número, se houver
-        arraynumero << i.to_i unless i.empty?
+        if i.class == Integer
+          arraynumero << i.to_i unless i.empty?
+        end
 
-        puts "o numeor é: #{i} = #{x} e o x[#{i}] é #{arraynumero}"
+        puts "o numeor é: #{i} = #{x} e o x[#{i}] é #{arraynumero} e #{index}"
       end
       
       case char
       when "+"
         puts 'Operação: soma'
-        result = arraynumero[0] + arraynumero[4]
+        result = arraynumero[0] + arraynumero[2]
       when "-"
         puts 'Operação: subtração'
-        result = x - x2
+        result = arraynumero[0] - arraynumero[2]
       when "*"
         puts 'Operação: multiplicação'
-        result = x * x2
+        result = arraynumero[0] * arraynumero[2]
       when "/"
-        if x2 == 0
+        if arraynumero[2] == 0
           puts 'Não é possível dividir por 0'
         else
           puts 'Operação: divisão'
-          result = x / x[1]
+          result = arraynumero[0] / arraynumero[2]
         end
       else
         puts 'Operação inválida'
