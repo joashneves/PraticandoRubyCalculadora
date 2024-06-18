@@ -21,9 +21,15 @@ novoCalculo.each_with_index do |char, index|
       # Converte as partes da expressão para inteiros
       for i in novoCalculo
         x = novoCalculo[0...index].join.to_i
-        # Armazena o último número, se houver
-        if i.class == Integer
-          arraynumero << i.to_i unless i.empty?
+        if char =~ /\d/  # Verifica se o caractere é um dígito
+          numero_atual += char
+        else
+          numeroAtual = i.to_i
+          if numeroAtual != 0
+          # Se encontrar um operador, armazena o número completo e reseta numero_atual
+            arraynumero << i.to_i
+          end
+          numero_atual = ""
         end
 
         puts "o numeor é: #{i} = #{x} e o x[#{i}] é #{arraynumero} e #{index}"
@@ -32,19 +38,19 @@ novoCalculo.each_with_index do |char, index|
       case char
       when "+"
         puts 'Operação: soma'
-        result = arraynumero[0] + arraynumero[2]
+        result = arraynumero[0] + arraynumero[1]
       when "-"
         puts 'Operação: subtração'
-        result = arraynumero[0] - arraynumero[2]
+        result = arraynumero[0] - arraynumero[1]
       when "*"
         puts 'Operação: multiplicação'
-        result = arraynumero[0] * arraynumero[2]
+        result = arraynumero[0] * arraynumero[1]
       when "/"
-        if arraynumero[2] == 0
+        if arraynumero[1] == 0
           puts 'Não é possível dividir por 0'
         else
           puts 'Operação: divisão'
-          result = arraynumero[0] / arraynumero[2]
+          result = arraynumero[0] / arraynumero[1]
         end
       else
         puts 'Operação inválida'
