@@ -5,56 +5,66 @@ novoCalculo = calculo.split("")
 puts "\n"
 print novoCalculo
 puts "\n"
-# Inicializa variáveis para armazenar os números
-x = nil
-x2 = nil
-
-# Inicializa o resultado
-result = nil
 
 # Inicializa variáveis para armazenar os números e o operador
 arraynumero = []
+arrayoperador = []
 
-# Itera sobre os caracteres da expressão
-novoCalculo.each_with_index do |char, index|
-    if ["+", "-", "*", "/"].include?(char) 
+
       # Converte as partes da expressão para inteiros
       for i in novoCalculo
-        x = novoCalculo[0...index].join.to_i
-        if char =~ /\d/  # Verifica se o caractere é um dígito
-          numero_atual += char
+        if ["+", "-", "*", "/"].include?(i) 
+          arrayoperador << i
+        else
+        if i =~ /\d/  # Verifica se o caractere é um dígito
+          arraynumero << i.to_i
         else
           numeroAtual = i.to_i
           if numeroAtual != 0
           # Se encontrar um operador, armazena o número completo e reseta numero_atual
             arraynumero << i.to_i
           end
-          numero_atual = ""
+        puts "o Info : arraynumero = #{arraynumero} e arrayoperador = #{arrayoperador} o i = #{i}"
         end
 
-        puts "o numeor é: #{i} = #{x} e o x[#{i}] é #{arraynumero} e #{index}"
-      end
-      
-      case char
-      when "+"
-        puts 'Operação: soma'
-        result = arraynumero[0] + arraynumero[1]
-      when "-"
-        puts 'Operação: subtração'
-        result = arraynumero[0] - arraynumero[1]
-      when "*"
-        puts 'Operação: multiplicação'
-        result = arraynumero[0] * arraynumero[1]
-      when "/"
-        if arraynumero[1] == 0
-          puts 'Não é possível dividir por 0'
-        else
-          puts 'Operação: divisão'
-          result = arraynumero[0] / arraynumero[1]
-        end
-      else
-        puts 'Operação inválida'
-      end
+      # Inicializa o resultado
+result = arraynumero[0]
+
+# Itera sobre o array para realizar as operações
+x = 0
+y = 0
+while x < arraynumero.size
+
+  puts "o Info : arraynumero = #{arraynumero} e arrayoperador = #{arrayoperador} o x = #{x}"
+
+  operador = arrayoperador[y]
+  numero = arraynumero[x]
+
+  puts "o Info : numero = #{numero} e operador = #{operador}"
+  case operador
+  when "+"
+    result += numero
+    y += 1
+  when "-"
+    result -= numero
+    y += 1
+  when "*"
+    result *= numero
+    y += 1
+  when "/"
+    y += 1
+    if numero == 0
+      puts 'Não é possível dividir por 0'
+      result = nil
+      break
+    else
+      result /= numero
+    end
+  else
+    puts 'Operação inválida'
+  end
+  x += 2
+end
     end
   end
 # Imprime o resultado, se houver um
